@@ -469,7 +469,7 @@ if (O1_val == "X")
     O1_val = "*"
 if (O2_val == "X")
     O2_val = "*"
-
+  
 // determining the result of the Equation which the user have to solve.    
 infix = [N1_val, O1_val, N2_val, O2_val, N3_val];
 
@@ -523,6 +523,12 @@ function fun() {
         let localMap = new Map(myMap);
         let frequency_counter;
 
+        let isColorSet_For_N1 = false;
+        let isColorSet_For_N2 = false;
+        let isColorSet_For_N3 = false;
+        let isColorSet_For_O1 = false;
+        let isColorSet_For_O2 = false;
+
 
         let local_Id_of_N1 = document.getElementById(id_of_N1);
         let local_Id_of_N2 = document.getElementById(id_of_N2);
@@ -571,70 +577,36 @@ function fun() {
             }
             else{
 
-                
+             // For Color_Green
+            //N1
             // Condition for the text box N1 (first textbox) : If input value exists in the Equation and placed 
-            //correctly in the equation, Background Color will be color
+            //correctly in the equation, Background Color will be green
 
             if (localMap.get(local_Id_of_N1.value) > 0 && local_Id_of_N1.value == N1_val) {
-
 
                 document.getElementById(local_Id_of_N1.id).style.backgroundColor = color_green;
                 frequency_counter = localMap.get(local_Id_of_N1.value);
                 localMap.set(local_Id_of_N1.value, frequency_counter - 1);
                 count_visited_boxes += 1;
+                isColorSet_For_N1 = true;
             }
-            else if (localMap.get(local_Id_of_N1.value) > 0 && local_Id_of_N1.value != N1_val) {
-
-                //If input value exists in the Equation and placed 
-                //incorrectly in the equation, Background Color will be yellow
-
-                document.getElementById(local_Id_of_N1.id).style.backgroundColor = color_yellow;
-                frequency_counter = localMap.get(local_Id_of_N1.value);
-                localMap.set(local_Id_of_N1.value, frequency_counter - 1);
-                count_visited_boxes += 1;
-            }
-
-            else if (localMap.get(local_Id_of_N1.value) == 0) {
-
-                //If input value does not exists in the Equation then Background Color will be Red
-                document.getElementById(local_Id_of_N1.id).style.backgroundColor = color_red;
-                count_visited_boxes += 1;
-            }
-
-
 
             // N2
             // Condition for the text box N2 (Third textbox) : If input value exists in the Equation and placed 
-            //correctly in the equation, Background Color will be color
-
-
+            //correctly in the equation, Background Color will be green
+            
             if (localMap.get(local_Id_of_N2.value) > 0 && local_Id_of_N2.value == N2_val) {
 
                 document.getElementById(local_Id_of_N2.id).style.backgroundColor = color_green;
                 frequency_counter = localMap.get(local_Id_of_N2.value);
                 localMap.set(local_Id_of_N2.value, frequency_counter - 1);
                 count_visited_boxes += 1;
+                isColorSet_For_N2 = true;
             }
-            else if (localMap.get(local_Id_of_N2.value) > 0 && local_Id_of_N2.value != N2_val) {
-
-                //If input value exists in the Equation and placed 
-                //incorrectly in the equation, Background Color will be yellow
-                document.getElementById(local_Id_of_N2.id).style.backgroundColor = color_yellow;
-                frequency_counter = localMap.get(local_Id_of_N2.value);
-                localMap.set(local_Id_of_N2.value, frequency_counter - 1);
-                count_visited_boxes += 1;
-            }
-            else if (localMap.get(local_Id_of_N2.value) == 0) {
-
-                //If input value does not exists in the Equation then Background Color will be Red
-                document.getElementById(local_Id_of_N2.id).style.backgroundColor = color_red;
-                count_visited_boxes += 1;
-            }
-
 
             //N3   
             // Condition for the text box N3 (Fifth textbox) : If input value exists in the Equation and placed 
-            //correctly in the equation, Background Color will be color
+            //correctly in the equation, Background Color will be green
 
             if (localMap.get(local_Id_of_N3.value) > 0 && local_Id_of_N3.value == N3_val) {
 
@@ -644,9 +616,63 @@ function fun() {
                 localMap.set(local_Id_of_N3.value, frequency_counter - 1);
                 nextRow = 1;
                 count_visited_boxes += 1;
+                isColorSet_For_N3 = true;
             }
 
-            else if (localMap.get(local_Id_of_N3.value) > 0 && local_Id_of_N3.value != N3_val) {
+            //O1   
+            // Condition for the text box O1 (second textbox) : If input value exists in the Equation and placed 
+            //correctly in the equation, Background Color will be green
+
+            if (localMap.get(local_Id_of_O1.value) > 0 && local_Id_of_O1.value == O1_val) {
+
+                document.getElementById(local_Id_of_O1.id).style.backgroundColor = color_green;
+                frequency_counter = localMap.get(local_Id_of_O1.value);
+                localMap.set(local_Id_of_O1.value, frequency_counter - 1);
+                count_visited_boxes += 1;
+                isColorSet_For_O1 = true;
+            }
+
+            //O2   
+            // Condition for the text box O2 (Fourth textbox) : If input value exists in the Equation and placed 
+            //correctly in the equation, Background Color will be green     
+
+            if (localMap.get(local_Id_of_O2.value) > 0 && local_Id_of_O2.value == O2_val) {
+
+                document.getElementById(local_Id_of_O2.id).style.backgroundColor = color_green;
+                frequency_counter = localMap.get(local_Id_of_O2.value);
+                localMap.set(local_Id_of_O2.value, frequency_counter - 1);
+                count_visited_boxes += 1;
+                isColorSet_For_O2 = true;
+            }           
+
+            
+            // For Color_Yellow
+            //N1
+            if (localMap.get(local_Id_of_N1.value) > 0 && local_Id_of_N1.value != N1_val && isColorSet_For_N1==false) {
+
+                //If input value exists in the Equation and placed 
+                //incorrectly in the equation, Background Color will be yellow
+
+                document.getElementById(local_Id_of_N1.id).style.backgroundColor = color_yellow;
+                frequency_counter = localMap.get(local_Id_of_N1.value);
+                localMap.set(local_Id_of_N1.value, frequency_counter - 1);
+                count_visited_boxes += 1;
+                isColorSet_For_N1 = true;
+            }
+            //N2
+            if (localMap.get(local_Id_of_N2.value) > 0 && local_Id_of_N2.value != N2_val && isColorSet_For_N2 == false) {
+
+                //If input value exists in the Equation and placed 
+                //incorrectly in the equation, Background Color will be yellow
+                document.getElementById(local_Id_of_N2.id).style.backgroundColor = color_yellow;
+                frequency_counter = localMap.get(local_Id_of_N2.value);
+                localMap.set(local_Id_of_N2.value, frequency_counter - 1);
+                count_visited_boxes += 1;
+                isColorSet_For_N2 = true;
+            }
+            //N3
+            
+            if (localMap.get(local_Id_of_N3.value) > 0 && local_Id_of_N3.value != N3_val && isColorSet_For_N3 ==false) {
 
                 //If input value exists in the Equation and placed 
                 //incorrectly in the equation, Background Color will be yellow
@@ -655,27 +681,10 @@ function fun() {
                 localMap.set(local_Id_of_N3.value, frequency_counter - 1);
                 nextRow = 1;
                 count_visited_boxes += 1;
+                isColorSet_For_N3 = true;
             }
-
-            else if (localMap.get(local_Id_of_N3.value) == 0) {
-
-                document.getElementById(local_Id_of_N3.id).style.backgroundColor = color_red;
-                nextRow = 1;
-                count_visited_boxes += 1;
-            }
-
-            //O1   
-            // Condition for the text box O1 (second textbox) : If input value exists in the Equation and placed 
-            //correctly in the equation, Background Color will be color
-
-            if (localMap.get(local_Id_of_O1.value) > 0 && local_Id_of_O1.value == O1_val) {
-
-                document.getElementById(local_Id_of_O1.id).style.backgroundColor = color_green;
-                frequency_counter = localMap.get(local_Id_of_O1.value);
-                localMap.set(local_Id_of_O1.value, frequency_counter - 1);
-                count_visited_boxes += 1;
-            }
-            else if (localMap.get(local_Id_of_O1.value) > 0 && local_Id_of_O1.value != O1_val) {
+            //O1
+            if (localMap.get(local_Id_of_O1.value) > 0 && local_Id_of_O1.value != O1_val && isColorSet_For_O1 == false) {
 
                 //If input value exists in the Equation and placed 
                 //incorrectly in the equation, Background Color will be yellow
@@ -683,28 +692,10 @@ function fun() {
                 frequency_counter = localMap.get(local_Id_of_O1.value);
                 localMap.set(local_Id_of_O1.value, frequency_counter - 1);
                 count_visited_boxes += 1;
+                isColorSet_For_O1 =true;
             }
-            else if (localMap.get(local_Id_of_O1.value) == 0) {
-
-                //If input value does not exists in the Equation then Background Color will be Red
-                document.getElementById(local_Id_of_O1.id).style.backgroundColor = color_red;
-                count_visited_boxes += 1;
-            }
-
-
-            //O2   
-            // Condition for the text box O2 (Fourth textbox) : If input value exists in the Equation and placed 
-            //correctly in the equation, Background Color will be color     
-
-            if (localMap.get(local_Id_of_O2.value) > 0 && local_Id_of_O2.value == O2_val) {
-
-                document.getElementById(local_Id_of_O2.id).style.backgroundColor = color_green;
-                frequency_counter = localMap.get(local_Id_of_O2.value);
-                localMap.set(local_Id_of_O2.value, frequency_counter - 1);
-                count_visited_boxes += 1;
-            }
-
-            else if (localMap.get(local_Id_of_O2.value) > 0 && local_Id_of_O2.value != O2_val) {
+            //O2
+            if (localMap.get(local_Id_of_O2.value) > 0 && local_Id_of_O2.value != O2_val && isColorSet_For_O2 == false) {
 
                 //If input value exists in the Equation and placed 
                 //incorrectly in the equation, Background Color will be yellow
@@ -712,9 +703,42 @@ function fun() {
                 frequency_counter = localMap.get(local_Id_of_O2.value);
                 localMap.set(local_Id_of_O2.value, frequency_counter - 1);
                 count_visited_boxes += 1;
+                isColorSet_For_O2=true;
             }
 
-            else if (localMap.get(local_Id_of_O2.value) == 0) {
+
+            // For Color_Red
+            // N1
+            if (localMap.get(local_Id_of_N1.value) == 0 && isColorSet_For_N1 == false) {
+
+                //If input value does not exists in the Equation then Background Color will be Red
+                document.getElementById(local_Id_of_N1.id).style.backgroundColor = color_red;
+                count_visited_boxes += 1;
+            }
+            //N2
+            if (localMap.get(local_Id_of_N2.value) == 0 && isColorSet_For_N2 == false) {
+
+                //If input value does not exists in the Equation then Background Color will be Red
+                document.getElementById(local_Id_of_N2.id).style.backgroundColor = color_red;
+                count_visited_boxes += 1;
+            }
+            //N3
+            if (localMap.get(local_Id_of_N3.value) == 0 && isColorSet_For_N3 == false) {
+
+                document.getElementById(local_Id_of_N3.id).style.backgroundColor = color_red;
+                nextRow = 1;
+                count_visited_boxes += 1;
+            }
+            //O1
+            if (localMap.get(local_Id_of_O1.value) == 0 && isColorSet_For_O1 == false) {
+
+                //If input value does not exists in the Equation then Background Color will be Red
+                document.getElementById(local_Id_of_O1.id).style.backgroundColor = color_red;
+                count_visited_boxes += 1;
+            }
+
+            // O2
+            if (localMap.get(local_Id_of_O2.value) == 0 && isColorSet_For_O2 == false) {
 
                 //If input value does not exists in the Equation then Background Color will be Red
                 document.getElementById(local_Id_of_O2.id).style.backgroundColor = color_red;
